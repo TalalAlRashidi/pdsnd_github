@@ -17,7 +17,7 @@ def user_selection(choice, message):
         else:
             answer = ''
             print('Could you please enter one of the choices:\n')
-              
+
 
 def get_filters():
     """
@@ -129,6 +129,38 @@ def user_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+
+def display_raw(df):
+    """Displays raw data """
+
+    index = 0
+
+    # start showing the first 5 lines of data
+    print(df.iloc[index: index+5])
+
+    while True:
+
+        answer = input('Do you want to see more data [yes/no] ? ')
+        answer = answer.lower().strip()
+
+        if answer not in ['yes', 'no']:
+            print('Please enter a valid answer.')
+            continue
+
+        if answer == 'no':
+            break
+
+        # incrementation and checking
+        index += 5
+        upper_bound = min(len(df), index+5)
+
+        # display the next 5 lines
+        print(df.iloc[index: upper_bound])
+
+        # break and end
+        if upper_bound == len(df):
+            print('\nNo more raw data to display.')
+            break
 
 
 def main():
