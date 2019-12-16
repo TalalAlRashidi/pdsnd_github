@@ -6,6 +6,19 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
+def user_selection(choice, message):
+    answer = ''
+    while len(answer) == 0:
+        answer = input(message)
+        answer = answer.strip().lower()
+
+        if answer in choice:
+            return answer
+        else:
+            answer = ''
+            print('Could you please enter one of the choices:\n')
+              
+
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
