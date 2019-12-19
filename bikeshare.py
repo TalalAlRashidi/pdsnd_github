@@ -1,12 +1,31 @@
 import time
 import pandas as pd
 import numpy as np
-
+# This project simply is a project for bikeshare system
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
+<<<<<<< .merge_file_a18612
 def get_filters(): #first function to beign with
+||||||| .merge_file_a03120
+def get_filters():
+=======
+def user_selection(choice, message):
+    answer = ''
+    while len(answer) == 0:
+        answer = input(message)
+        answer = answer.strip().lower()
+
+        if answer in choice:
+            return answer
+        else:
+            answer = ''
+            print('Could you please enter one of the choices:\n')
+
+
+def get_filters():
+>>>>>>> .merge_file_a07516
     """
     Asks user to specify a city, month, and day to analyze.
 
@@ -117,6 +136,38 @@ def user_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+
+def display_raw(df):
+    """Displays raw data """
+
+    index = 0
+
+    # start showing the first 5 lines of data
+    print(df.iloc[index: index+5])
+
+    while True:
+
+        answer = input('Do you want to see more data [yes/no] ? ')
+        answer = answer.lower().strip()
+
+        if answer not in ['yes', 'no']:
+            print('Please enter a valid answer.')
+            continue
+
+        if answer == 'no':
+            break
+
+        # incrementation and checking
+        index += 5
+        upper_bound = min(len(df), index+5)
+
+        # display the next 5 lines
+        print(df.iloc[index: upper_bound])
+
+        # break and end
+        if upper_bound == len(df):
+            print('\nNo more raw data to display.')
+            break
 
 
 def main():
